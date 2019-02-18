@@ -1,0 +1,67 @@
+/**
+ * @name    SReplyComponent
+ * Provide some clean reply message display for your form, etc...
+ *
+ * @example   html
+ * <div class="reply reply--success">
+ *   <p class="p">
+ *     Etiam ut leo sit amet nibh lacinia finibus. Pellentesque ultricies.
+ *   </p>
+ * </div>
+ *
+ * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+ */
+
+/**
+ * Print out the bare and style component css
+ * Generated classes:
+ * - `.reply`
+ * - `.reply--{color}`
+ * - `.reply--interactive`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+@mixin s-reply-classes(
+  $colors: default primary secondary
+) {
+  @include s-reply-classes-bare();
+  @include s-reply-classes-style($colors);
+}
+
+/**
+ * Print out the bare component css
+ * Generated classes:
+ * - `.reply`
+ */
+@mixin s-reply-classes-bare() {
+  @include s-component('reply') {
+    .#{s-component()} {
+      @include s-reply-bare();
+    }
+  }
+}
+
+/**
+ * Print out the style component css
+ * Generated classes:
+ * - `.reply`
+ * - `.reply--{color}`
+ * - `.reply--interactive`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+@mixin s-reply-classes-style(
+  $colors: default primary secondary
+) {
+  @include s-component('reply') {
+    @each $color in $colors {
+      $sel : ".#{s-component()}--#{$color}";
+
+      @if $color == default {
+        $sel : ".#{s-component()}";
+      }
+
+      #{$sel} {
+        @include s-reply-style($color);
+      }
+    }
+  }
+}

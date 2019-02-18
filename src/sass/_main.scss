@@ -1,0 +1,71 @@
+/**
+ * @name    SReplyComponent
+ * Provide some clean reply message display for your form, etc...
+ *
+ * @example   html
+ * <div class="reply reply--success">
+ *   <p class="p">
+ *     Etiam ut leo sit amet nibh lacinia finibus. Pellentesque ultricies.
+ *   </p>
+ * </div>
+ *
+ * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+ */
+
+/**
+ * Print out the bare and style component css
+ * @param 	{List<Color>} 		[$color=default] 		The color to generate
+ */
+@mixin s-reply(
+  $color: default
+) {
+  @include s-reply-bare();
+  @include s-reply-style($color);
+}
+
+/**
+ * Print out the bare component css
+ */
+@mixin s-reply-bare() {
+  @include s-component('reply') {
+    padding: s-space(default);
+    border-radius: s-lnf(border-radius);
+    display: block;
+
+    &--interactive {
+      cursor: pointer;
+    }
+  }
+}
+
+/**
+ * Print out the style component css
+ * @param 	{Color} 		[$color=default] 		The color to generate
+ */
+@mixin s-reply-style(
+  $color: default
+) {
+  @include s-component('reply') {
+    $lightness : lightness(s-color($color));
+
+    $borderLighten: 0;
+
+    $backgroundColor: s-color($color);
+
+    @if $lightness < 95 {
+      $backgroundColor: s-color($color, -lighten 95 - $lightness);
+    }
+
+    @if $lightness < 85 {
+      $borderLighten: 85 - $lightness;
+    }
+
+    background-color: $backgroundColor;
+    border: 1px solid s-color($color, -lighten $borderLighten);
+    color: s-color($color);
+
+    &.#{s-component()}--interactive:hover {
+      background-color: s-color($backgroundColor, -darken 5%);
+    }
+  }
+}
