@@ -3,10 +3,10 @@ module.exports = {
   port: 3000,
 
   // title
-  title: "s-{component-name}-component",
+  title: 's-reply-component',
 
   // layout
-  layout: "right",
+  layout: 'right',
 
   // compile server
   compileServer: {
@@ -17,35 +17,66 @@ module.exports = {
   // editors
   editors: {
     html: {
-      language: "html",
+      language: 'html',
       data: `
-        <h1 class="h3 m-b-small">
-          Coffeekraken s-{component-name}-component
-        </h1>
-        <p class="p m-b-bigger">
-          {component-description}
-        </p>
-        <!-- examples here... -->
+        <div class="reply m-b">
+          <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+        </div>
+        <div class="reply reply--primary m-b">
+          <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+        </div>
+        <div class="reply reply--secondary m-b">
+          <div class="mo">
+            <div class="mo__content p-r">
+              <s-icon driver="fontawesome" class="s-bigger" icon="far fa-user"></s-icon>
+            </div>
+            <div class="mo__content">
+              <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reply reply--success m-b">
+          <div class="mo">
+            <div class="mo__content p-r">
+              <s-icon driver="fontawesome" class="s-bigger" icon="far fa-user"></s-icon>
+            </div>
+            <div class="mo__content">
+              <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reply reply--error reply--interactive m-b">
+          <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+        </div>
+        <div class="reply reply--warning reply--interactive m-b">
+          <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+        </div>
+        <div class="reply reply--info m-b">
+          <p class="p">Curabitur in massa in nibh imperdiet venenatis. Nullam rutrum tincidunt nisi id commodo. Integer sit amet porta nibh, vel rhoncus quam. Sed urna urna, vulputate in lorem ut, consectetur pellentesque.</p>
+        </div>
       `
     },
     css: {
-      language: "scss",
+      language: 'scss',
       data: `
         @import 'node_modules/coffeekraken-sugar/index';
         @import 'node_modules/coffeekraken-s-typography-component/index';
+        @import 'index';
         @include s-init();
         @include s-classes();
         @include s-typography-classes();
         body {
           padding: s-space(bigger);
         }
-        // component css here...
+        @include s-reply-classes(
+          $colors: default primary secondary success error warning info
+        );
       `
     },
     js: {
-      language: "js",
+      language: 'js',
       data: `
-        import Component from './dist/index'
+        import 'coffeekraken-s-icon-component'
       `
     }
   }
