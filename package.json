@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-s-reply-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provide some clean reply message display for your form, etc...",
   "main": "_index.scss",
   "homepage": "http://coffeekraken.io",
@@ -46,8 +46,7 @@
   },
   "pre-commit": [
     "pretty-quick-commit",
-    "test",
-    "lint"
+    "test"
   ],
   "keywords": [
     "reply",
